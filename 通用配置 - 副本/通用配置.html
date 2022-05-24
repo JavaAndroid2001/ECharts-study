@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通用配置</title>
+    <script src="../lib/echarts.min.js"></script>
+    <style>
+        .container {
+            width: 600px;
+            height: 400px;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        通用配置:
+            标题: title
+                文字样式
+                    textStyle
+                标题边框
+                标题位置
+            提示: tooltip
+            工具按钮: toolbox 
+            图例: legend
+     -->
+    <div class="container"></div>
+</body>
+<script>
+    let mCharts = echarts.init(document.querySelector('div'))
+
+    let xDataArr = ['张三', '李四', '王五']
+
+    let yDataArr = [88, 92, 63]
+
+    const option = {
+        xAxis: {
+            // 类目轴
+            type: 'category',
+            data: xDataArr
+        },
+        yAxis: {
+
+            type: 'value'
+        },
+        series: [
+            {
+                name: '语文',
+                // 柱状图
+                type: 'bar',
+                data: yDataArr,
+            }
+        ]
+    }
+    mCharts.setOption(option)
+</script>
+
+</html>

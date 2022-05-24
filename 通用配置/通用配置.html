@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通用配置</title>
+    <script src="../lib/echarts.min.js"></script>
+    <style>
+        .container {
+            width: 600px;
+            height: 400px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        通用配置:
+            标题: title
+                文字样式
+                    textStyle
+                标题边框
+                    border
+                标题位置
+                    top...
+                
+            提示: tooltip
+                tooltip: 提示框组件,鼠标移入或点击显示
+                    触发类型：trigger
+                        item，axis
+                    触发的时机: triggerOn
+                        mouseover, click
+            工具按钮: toolbox 
+            图例: legend
+     -->
+    <div class="container"></div>
+</body>
+<script>
+    let mCharts = echarts.init(document.querySelector('div'))
+
+    let xDataArr = ['张三', '李四', '王五']
+
+    // 语文成绩
+    let yDataArr = [88, 92, 63]
+
+    // 数学成绩
+    let yDataArr2 = [20, 100, 80]
+
+    const option = {
+        title: {
+            text: '成绩展示',
+            textStyle: {
+                color: '#8e44ad'
+            },
+            borderWidth: 5,
+            borderColor: 'blue',
+            borderRadius: 5,
+        },
+
+
+        tooltip: {
+            // 触发类型
+            trigger: 'item',
+            // trigger: 'axis',
+            // 触发时机
+            triggerOn: 'click',
+            // formatter: '{b} 的成绩是 {a}'
+            formatter: function (res) {
+                console.log(res);
+                return '回调函数';
+            }
+        },
+        toolbox: {
+            feature: {
+                // 导出图片
+                saveAsImage: {},
+                // 数据视图
+                dataView: {},
+                // 重置
+                restore: {},
+                // 区域缩放
+                dataZoom: {},
+                // 动态图表类型切换
+                magicType: {
+                    type: ['bar', 'line']
+                }
+            }
+        },
+        legend: {
+            data: ['语文', '数学']
+        },
+
+        xAxis: {
+            // 类目轴
+            type: 'category',
+            data: xDataArr
+        },
+        yAxis: {
+
+            type: 'value'
+        },
+        series: [
+            {
+                name: '语文',
+                // 柱状图
+                type: 'bar',
+                data: yDataArr,
+            },
+            {
+                name: '数学',
+                // 柱状图
+                type: 'line',
+                data: yDataArr2,
+            }
+        ],
+
+    }
+    mCharts.setOption(option)
+</script>
+
+</html>
